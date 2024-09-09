@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pay Bill</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .top-bar {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .top-bar .menu {
+      display: flex;
+      gap: 20px;
+    }
+    .top-bar a {
+      color: white;
+      text-decoration: none;
+    }
+    .bill-list {
+      margin: 20px;
+    }
+    .total {
+      font-size: 20px;
+      margin: 20px;
+    }
+    button {
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div class="top-bar">
+  <div class="menu">
+    <a href="home.html">Home</a>
+    <a href="pay-bill.html">Pay Bill</a>
+    <a href="register-complaint.html">Register Complaint</a>
+    <a href="complaint-status.html">Complaint Status</a>
+  </div>
+  <button id="logout">Logout</button>
+</div>
+
+<div class="bill-list">
+  <h2>Select Bills to Pay</h2>
+  <label>
+    <input type="checkbox" class="bill" data-amount="100"> Bill 1 (Amount: $100)
+  </label><br>
+  <label>
+    <input type="checkbox" class="bill" data-amount="200"> Bill 2 (Amount: $200)
+  </label><br>
+  <label>
+    <input type="checkbox" class="bill" data-amount="150"> Bill 3 (Amount: $150)
+  </label><br>
+</div>
+
+<div class="total">
+  Total Amount: $<span id="totalAmount">0</span>
+</div>
+
+<button id="proceedToPay">Proceed to Pay</button>
+
+<script>
+  let totalAmount = 0;
+
+  // Update total amount when bill checkboxes are clicked
+  const checkboxes = document.querySelectorAll('.bill');
+  checkboxes.forEach(function(checkbox) {
+    checkbox.addEventListener('change', function() {
+      const amount = parseFloat(checkbox.getAttribute('data-amount'));
+      if (checkbox.checked) {
+        totalAmount += amount;
+      } else {
+        totalAmount -= amount;
+      }
+      document.getElementById('totalAmount').textContent = totalAmount;
+    });
+  });
+
+  // Proceed to payment
+  document.getElementById('proceedToPay').addEventListener('click', function() {
+    if (totalAmount > 0) {
+      window.location.href = 'payment.html';
+    } else {
+      alert('Please select at least one bill to proceed.');
+    }
+  });
+
+  // Logout functionality
+  document.getElementById('logout').addEventListener('click', function() {
+    localStorage.removeItem('loggedInUser');
+    window.location.href = 'login.html';
+  });
+</script>
+
+</body>
+</html>

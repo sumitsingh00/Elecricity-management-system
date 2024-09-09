@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Receipt</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin-top: 20px;
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Payment Receipt</h2>
+  <p>Bill Amount: $300</p>
+  <p>PG Charge: $10</p>
+  <p>Total Paid: $310</p>
+  <button id="downloadReceipt">Download Receipt</button>
+</div>
+
+<script>
+  document.getElementById('downloadReceipt').addEventListener('click', function() {
+    const receiptText = 'Payment Receipt\nBill Amount: $300\nPG Charge: $10\nTotal Paid: $310\nThank you for your payment!';
+    
+    const blob = new Blob([receiptText], { type: 'text/plain' });
+    const url = window.URL.createObjectURL(blob);
+
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'PaymentReceipt.txt';
+    a.click();
+    window.URL.revokeObjectURL(url);
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register Complaint/Service</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .top-bar {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .top-bar .menu {
+      display: flex;
+      gap: 20px;
+    }
+    .top-bar a {
+      color: white;
+      text-decoration: none;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin-top: 20px;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 10px;
+    }
+    input[type="text"], textarea {
+      width: 100%;
+      padding: 8px;
+      margin: 5px 0 15px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    select {
+      width: 100%;
+      padding: 8px;
+      margin: 5px 0 15px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+<div class="top-bar">
+  <div class="menu">
+    <a href="home.html">Home</a>
+    <a href="pay-bill.html">Pay Bill</a>
+    <a href="register-complaint.html">Register Complaint</a>
+    <a href="complaint-status.html">Complaint Status</a>
+  </div>
+  <button id="logout">Logout</button>
+</div>
+
+<div class="container">
+  <h2>Register Complaint/Service</h2>
+  <form id="complaintForm">
+    <label for="complaintType">Complaint/Service Type:</label>
+    <select id="complaintType" required>
+      <option value="">Select Type</option>
+      <option value="billing">Billing related</option>
+      <option value="voltage">Voltage related</option>
+      <option value="disruption">Frequent disruption</option>
+      <option value="streetlight">Street light related</option>
+      <option value="pole">Pole related</option>
+    </select>
+
+    <label for="category">Category:</label>
+    <select id="category" required>
+      <option value="">Select Category</option>
+    </select>
+
+    <label for="contactPerson">Contact Person:</label>
+    <input type="text" id="contactPerson" required>
+
+    <label for="landmark">Landmark:</label>
+    <input type="text" id="landmark" required>
+
+    <label for="consumerNo">Consumer No:</label>
+    <input type="text" id="consumerNo" maxlength="13" required>
+
+    <label for="problemDescription">Problem Description:</label>
+    <textarea id="problemDescription" rows="4" required></textarea>
+
+    <label for="mobileNumber">Mobile Number:</label>
+    <input type="text" id="mobileNumber" maxlength="10" required>
+
+    <label for="address">Address:</label>
+    <textarea id="address" rows="4" required></textarea>
+
+    <button type="submit">Submit Complaint</button>
+    <button type="button" id="cancel">Cancel</button>
+  </form>
+</div>
+
+<script>
+  // Complaint types and their categories
+  const categories = {
+    billing: ['Incorrect bill', 'Late bill', 'High bill'],
+    voltage: ['Low voltage', 'High voltage'],
+    disruption: ['Frequent outage', 'Partial outage'],
+    streetlight: ['Not working', 'Flickering'],
+    pole: ['Damaged pole', 'Pole replacement']
+  };
+
+  // Update categories based on complaint type selection
+  document.getElementById('complaintType').addEventListener('change', function() {
+    const type = this.value;
+    const categorySelect = document.getElementById('category');
+    
+    // Clear current categories
+    categorySelect.innerHTML = '<option value="">Select Category</option>';
+    
+    if (categories[type]) {
+      categories[type].forEach(function(category) {
+        const option = document.createElement('option');
+        option.value = category.toLowerCase().replace(/\s+/g, '-');
+        option.textContent = category;
+        categorySelect.appendChild(option);
+      });
+    }
+  });
+
+  // Form submission
+  document.getElementById('complaintForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    // Generate unique complaint ID (static example here)
+    const complaintId = 'C' + Math.floor(Math.random() * 1000000);
+    
+    // Show success message and complaint ID
+    alert('Complaint Registered Successfully!\nComplaint ID: ' + complaintId);
+    
+    // Redirect to a success page or display further instructions
+    // window.location.href = 'complaint-success.html'; // Uncomment if using a success page
+  });
+
+  // Cancel button functionality
+  document.getElementById('cancel').addEventListener('click', function() {
+    document.getElementById('complaintForm').reset();
+  });
+
+  // Logout functionality
+  document.getElementById('logout').addEventListener('click', function() {
+    localStorage.removeItem('loggedInUser');
+    window.location.href = 'login.html';
+  });
+</script>
+
+</body>
+</html>

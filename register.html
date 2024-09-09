@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consumer Registration</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+    label {
+      font-weight: bold;
+      margin-top: 10px;
+      display: block;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    select {
+      width: 100%;
+      padding: 8px;
+      margin: 5px 0 15px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .row {
+      display: flex;
+      justify-content: space-between;
+    }
+    .row .col {
+      width: 48%;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .reset-btn {
+      background-color: #f44336;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2 style="text-shadow: 1px 1px gray;">Consumer Registration</h2>
+  <form id="registrationForm">
+    <div class="form-group">
+      <label for="title" style="text-shadow: 1px 1px gray;">Title:</label>
+      <select id="title" name="title">
+        <option value="Mr">Mr.</option>
+        <option value="Mrs">Mrs.</option>
+        <option value="Ms">Ms.</option>
+        <option value="Dr">Dr.</option>
+      </select>
+    </div>
+    
+    <div class="form-group">
+      <label for="name" style="text-shadow: 1px 1px gray;">Customer Name:</label>
+      <input type="text" id="name" name="name" maxlength="50" required>
+    </div>
+
+    <div class="form-group">
+      <label for="email" style="text-shadow: 1px 1px gray;">Email:</label>
+      <input type="email" id="email" name="email" required>
+    </div>
+
+    <div class="form-group">
+      <label for="mobile" style="text-shadow: 1px 1px gray;">Mobile Number:</label>
+      <div class="row">
+        <div class="col">
+          <select id="countryCode" name="countryCode">
+            <option value="+1">+1</option>
+            <option value="+91">+91</option>
+            <option value="+44">+44</option>
+          </select>
+        </div>
+        <div class="col">
+          <input type="text" id="mobileNumber" name="mobileNumber" maxlength="10" required>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="billNumber" style="text-shadow: 1px 1px gray;">Bill Number (Last 5 digits):</label>
+      <input type="text" id="billNumber" name="billNumber" maxlength="5" required>
+    </div>
+
+    <div class="form-group">
+      <label for="userID" style="text-shadow: 1px 1px gray;">User ID:</label>
+      <input type="text" id="userID" name="userID" minlength="5" maxlength="20" required>
+    </div>
+
+    <div class="form-group">
+      <label for="password" style="text-shadow: 1px 1px gray;">Password:</label>
+      <input type="password" id="password" name="password" maxlength="30" required>
+    </div>
+
+    <div class="form-group">
+      <label for="confirmPassword" style="text-shadow: 1px 1px gray;">Confirm Password:</label>
+      <input type="password" id="confirmPassword" name="confirmPassword" maxlength="30" required>
+    </div>
+
+    <button type="submit" style="text-shadow: 1px 1px gray; font-style: oblique;">Register</button>
+    <button type="reset" class="reset-btn" style="text-shadow: 2px 2px gray; font-style: italic;">Reset</button>
+  </form>
+</div>
+
+<script>
+  document.getElementById('registrationForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    // Perform validation and ID generation here
+    const customerID = Math.floor(Math.random() * 10000000000000);
+    alert('Consumer Registration successful.\n\nCustomer ID: ' + customerID + '\nName: ' + document.getElementById('name').value + '\nEmail: ' + document.getElementById('email').value);
+  });
+</script>
+
+
+<!-- <div class="acknowledgment" id="acknowledgment" style="display: none;"></div>
+  <h2>Consumer Registration successful.</h2>
+  <p>Customer ID: <span id="generatedCustomerID"></span></p>
+  <p>Name: <span id="registeredName"></span></p>
+  <p>Email: <span id="registeredEmail"></span></p>
+</div>
+
+<script>
+  document.getElementById('registrationForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    const customerID = Math.floor(Math.random() * 10000000000000);
+    document.getElementById('generatedCustomerID').innerText = customerID;
+    document.getElementById('registeredName').innerText = document.getElementById('name').value;
+    document.getElementById('registeredEmail').innerText = document.getElementById('email').value;
+    
+    document.querySelector('.container').style.display = 'none';
+    document.getElementById('acknowledgment').style.display = 'block';
+  });
+</script> -->
+
+</body>
+</html>

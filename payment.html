@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .top-bar {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .top-bar .menu {
+      display: flex;
+      gap: 20px;
+    }
+    .top-bar a {
+      color: white;
+      text-decoration: none;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin-top: 20px;
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 10px;
+    }
+    input[type="text"], input[type="number"] {
+      width: 100%;
+      padding: 8px;
+      margin: 5px 0 15px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+<div class="top-bar">
+  <div class="menu">
+    <a href="home.html">Home</a>
+    <a href="pay-bill.html">Pay Bill</a>
+    <a href="register-complaint.html">Register Complaint</a>
+    <a href="complaint-status.html">Complaint Status</a>
+  </div>
+  <button id="logout">Logout</button>
+</div>
+
+<div class="container">
+  <h2>Payment Page</h2>
+  <div>
+    <label>Bill Amount:</label>
+    <span id="billAmount">$300</span>
+  </div>
+  <div>
+    <label>PG Charge:</label>
+    <span id="pgCharge">$10</span>
+  </div>
+  <div>
+    <label>Total Payable Amount:</label>
+    <span id="totalAmount">$310</span>
+  </div>
+  <div>
+    <label>Mode of Payment:</label>
+    <select id="paymentMode">
+      <option value="credit">Credit Card</option>
+      <option value="debit">Debit Card</option>
+    </select>
+  </div>
+  <button id="payNow">Pay Now</button>
+  <button id="backToHome">Back to Home</button>
+</div>
+
+<script>
+  // Payment amount details
+  const billAmount = 300;
+  const pgCharge = 10;
+  const totalAmount = billAmount + pgCharge;
+
+  document.getElementById('billAmount').textContent = `$${billAmount}`;
+  document.getElementById('pgCharge').textContent = `$${pgCharge}`;
+  document.getElementById('totalAmount').textContent = `$${totalAmount}`;
+
+  // Redirect to payment form
+  document.getElementById('payNow').addEventListener('click', function() {
+    window.location.href = 'payment-form.html';
+  });
+
+  // Back to home page
+  document.getElementById('backToHome').addEventListener('click', function() {
+    window.location.href = 'home.html';
+  });
+
+  // Logout functionality
+  document.getElementById('logout').addEventListener('click', function() {
+    localStorage.removeItem('loggedInUser');
+    window.location.href = 'login.html';
+  });
+</script>
+
+</body>
+</html>

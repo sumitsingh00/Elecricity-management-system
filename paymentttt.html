@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      max-width: 400px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin-top: 50px;
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Payment</h2>
+  <p>Total Amount to Pay: $<span id="totalAmount"></span></p>
+  <button id="payButton">Pay Now</button>
+</div>
+
+<script>
+  // Assuming the total amount is carried from previous page (static for now)
+  document.getElementById('totalAmount').textContent = '450'; // Set total from previous page
+
+  document.getElementById('payButton').addEventListener('click', function() {
+    alert('Payment successful! Thank you.');
+    window.location.href = 'home.html';
+  });
+</script>
+
+</body>
+</html>

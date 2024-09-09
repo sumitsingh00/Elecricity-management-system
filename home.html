@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .top-bar {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .top-bar .menu {
+      display: flex;
+      gap: 20px;
+    }
+    .top-bar a {
+      color: white;
+      text-decoration: none;
+    }
+    .welcome {
+      margin: 20px 0;
+      text-align: right;
+    }
+    .content {
+      margin: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="top-bar">
+  <div class="menu">
+    <a href="home.html">Home</a>
+    <a href="pay-bill.html">Pay Bill</a>
+    <a href="register-complaint.html">Register Complaint</a>
+    <a href="complaint-status.html">Complaint Status</a>
+  </div>
+  <button id="logout">Logout</button>
+</div>
+
+
+
+<div class="content">
+  <h2>Home Page</h2>
+  <p>This is the home page. You can navigate using the menu above.</p>
+</div>
+
+<script>
+  // Display logged-in username
+  const username = localStorage.getItem('loggedInUser');
+  document.getElementById('username').textContent = username;
+
+  // Logout functionality
+  document.getElementById('logout').addEventListener('click', function() {
+    localStorage.removeItem('loggedInUser');
+    window.location.href = 'register.html';
+  });
+</script>
+
+</body>
+</html>
